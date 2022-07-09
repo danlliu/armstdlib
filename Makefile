@@ -29,6 +29,6 @@ tests:	$(TEST_FILES:%.s=%)
 .PHONY: clean
 clean:
 	rm -rf *.o
-	find . -type f -perm +100 -delete
+	find . -type f -perm +100 -not -name "*.sh" -delete
 	find . -name *.o -delete
 
