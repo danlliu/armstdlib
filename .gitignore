@@ -1,3 +1,7 @@
+*
+!/**/
+!*.*
+
 *.o
 # keeping track of test cases in an Excel doc, so ignore that
 *.xlsx
