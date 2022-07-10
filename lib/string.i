@@ -5,6 +5,12 @@
                 // String function macros
                 //
 
+                .macro          strcpy          dest,   src
+                                mov             x0,    \dest
+                                mov             x1,    \src
+                                bl              _strcpy
+                .endmacro
+
                 .macro          strlen          string
                                 mov             x0,    \string
                                 bl              _strlen

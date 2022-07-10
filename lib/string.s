@@ -14,6 +14,17 @@
 
                 .include        "macros.i"
 
+                function        _strcpy
+                                // x0 = destination
+                                // x1 = source
+                                // returns x0 = destination
+                                mov             x2,     x0
+1:                              ldrb            w3,    [x1],   #1
+                                strb            w3,    [x0],   #1
+                                cbnz            w3,     1b
+                                mov             x0,     x2
+                                ret
+
                 function        _strlen
                                 // x0 = C string to find length of
                                 // returns x0 = length of string

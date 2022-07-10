@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-set -Eeuo pipefail
-set -x
-
 echo -n "Enter a test name (without .s) > "
 read testname
 echo -n "\nCreating files tst/$testname.s and tst/correct_output/$testname.out, confirm? (y/n) > "

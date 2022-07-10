@@ -20,3 +20,23 @@
                                 svc            #0x80
                                 ret
 
+                function        _malloc
+                                // x0 = B to allocate
+                                mov             x1,     x0                                      // size
+                                mov             x0,     xzr                                     // NULL
+                                mov             x2,    #0x3                                     // PROT_READ | PROT_WRITE
+                                mov             x3,    #0x1002                                  // MAP_ANONYMOUS | MAP_PRIVATE
+                                mov             x4,    #-1                                      // fd = -1
+                                mov             x5,    #0                                       // offset = 0
+                                mov             x16,   #197                                     // mmap
+                                svc            #0x80
+                                ret
+
+                function        _free
+                                // x0 = pointer to deallocate
+                                // x1 = B to deallocate
+                                mov             x16,   #73                                      // munmap
+                                svc            #0x80
+                                ret
+
+
