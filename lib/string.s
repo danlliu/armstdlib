@@ -25,6 +25,47 @@
                                 mov             x0,     x2
                                 ret
 
+                function        _strncpy
+                                // x0 = destination
+                                // x1 = source
+                                // x2 = n
+                                // returns x0 = destination
+                                mov             x3,     x0
+1:                              cbz             x2,     2f
+                                sub             x2,     x2,    #1
+                                ldrb            w4,    [x1],   #1
+                                strb            w4,    [x0],   #1
+                                cbnz            w4,     1b
+2:                              mov             x0,     x3
+                                ret
+
+                function        _strcat
+                                // x0 = destination
+                                // x1 = source
+                                // returns x0 = destination
+                                pushpair        lr,     x0
+1:                              ldrb            w2,    [x0]
+                                cbz             w2,     2f
+                                add             x0,     x0,    #1
+                                b               1b
+2:                              bl              _strcpy
+                                poppair         lr,     x0
+                                ret
+
+                function        _strncat
+                                // x0 = destination
+                                // x1 = source
+                                // x2 = n
+                                // returns x0 = destination
+                                pushpair        lr,     x0
+1:                              ldrb            w3,    [x0]
+                                cbz             w3,     2f
+                                add             x0,     x0,    #1
+                                b               1b
+2:                              bl              _strncpy
+                                poppair         lr,     x0
+                                ret
+
                 function        _strlen
                                 // x0 = C string to find length of
                                 // returns x0 = length of string

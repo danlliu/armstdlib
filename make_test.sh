@@ -2,6 +2,8 @@
 
 echo -n "Enter a test name (without .s) > "
 read testname
+echo -n "\nExisting test cases:\n"
+ls tst/*.s
 echo -n "\nCreating files tst/$testname.s and tst/correct_output/$testname.out, confirm? (y/n) > "
 if read -q "choice"; then
     cp tst/test_template.s tst/${testname}.s
