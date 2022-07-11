@@ -14,6 +14,26 @@
 
                 .include        "macros.i"
 
+                function        _strrev
+                                // x0 = string to reverse
+                                // returns x0 = reversed string
+                                pushreg         x0
+                                mov             x1,     x0
+1:                              ldrb            w2,    [x1]
+                                cbz             w2,     2f
+                                add             x1,     x1,    #1
+                                b               1b
+2:                              sub             x1,     x1,    #1
+1:                              cmp             x0,     x1
+                                b.ge            2f
+                                ldrb            w3,    [x0]
+                                ldrb            w4,    [x1]
+                                strb            w4,    [x0],   #1
+                                strb            w3,    [x1],   #-1
+                                b               1b
+2:                              popreg          x0
+                                ret
+
                 function        _strcpy
                                 // x0 = destination
                                 // x1 = source
@@ -75,5 +95,31 @@
                                 add             x2,     x2,    #1
                                 b               1b
 2:                              mov             x0,     x2
+                                ret
+
+                function        _strcmp
+                                // x0 = string 1
+                                // x1 = string 2
+                                // returns x0 = strcmp result
+1:                              ldrb            w2,    [x0],   #1
+                                ldrb            w3,    [x1],   #1
+                                cmp             w2,     w3
+                                b.ne            2f
+                                cbnz            w2,     1b
+2:                              sub             x0,     x2,     x3
+                                ret
+
+                function        _strncmp
+                                // x0 = string 1
+                                // x1 = string 2
+                                // x2 = n
+                                mov             x3,     x4
+1:                              cbz             x2,     2f
+                                ldrb            w3,    [x0],   #1
+                                ldrb            w4,    [x1],   #1
+                                cmp             w3,     w4
+                                b.ne            2f
+                                cbnz            w3,     1b
+2:                              sub             x0,     x3,     x4
                                 ret
 
