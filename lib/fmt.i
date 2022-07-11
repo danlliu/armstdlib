@@ -1,5 +1,5 @@
-                .ifndef         __STRING_I__
-                .set            __STRING_I__,   1
+                .ifndef         __FMT_I__
+                .set            __FMT_I__,   1
 
                 //
                 // Formatting macros

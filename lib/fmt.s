@@ -1,8 +1,8 @@
                 //
-                // String functions
+                // Format functions
                 //
                 // DON'T INCLUDE THIS FILE!
-                // .include "string.i"
+                // .include "fmt.i"
                 // Trust me, it'll make your life easier
                 //
                 // ABI:

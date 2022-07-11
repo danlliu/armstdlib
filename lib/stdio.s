@@ -1,5 +1,5 @@
                 //
-                // Standard library functions
+                // I/O functions
                 //
                 // DON'T INCLUDE THIS FILE!
                 // .include "stdio.i"
